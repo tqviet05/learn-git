@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+}
+
+.header{
+    width: 100%;
+    background-color: #78b43c;
+    padding: 0px 100px;
+    display: flex;
+    font-size: 13px;
+    color: #ffff;
+    justify-content: center;
+    .item-logo {
+        
+    }
+    img{
+        width: 70%;
+    }
+    .item {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+   .item-menu {
+       
+       img {
+           width: 40%;
+       
+       }
+   }
+   .item-list {
+        width: 40%;
+        display: flex;
+        
+   }
+   
+}
