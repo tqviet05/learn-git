@@ -1,5 +1,6 @@
-# hello-world
-Hello World repository for Git tutorial
-This is an example repository for the Git tutoial on https://www.w3schools.com
-
-This repository is built step by step in the tutorial. 
+# ngày nay đã học:
+Tìm hiểu về frontends HTML/CSS/ SCSS
+Cách đặt class, id, trong HTML
+Cách dàn trang layout
+Cài đặt sử dụng SCSS
+Dựng trang 24h.com.vn
