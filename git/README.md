@@ -1,4 +1,4 @@
-# **Hôm nay đã học**
+# **Hôm 18/4 đã học**
 ## GIT
  - Khai báo thông tin user : `git config --global user.name "ten_user"`
  - Khai báo email: `git config --global user.email "dia_chi-mail"`
@@ -23,6 +23,13 @@
     in đậm : '**'
     in nghiêng và in đậm: '***'
     dánh dấu highlight: echo()
+
+# ngày 19/4 đã học:
+- Tìm hiểu về frontends HTML/CSS/ SCSS
+- Cách đặt class, id, trong HTML
+- Cách dàn trang layout
+- Cài đặt sử dụng SCSS
+- Dựng trang 24h.com.vn
 
 
 

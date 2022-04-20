@@ -5,16 +5,17 @@
 .header{
     width: 100%;
     background-color: #78b43c;
-    padding: 0px 100px;
-    display: flex;
     font-size: 13px;
+    display: flex;
     color: #ffff;
     justify-content: center;
     .item-logo {
-        
-    }
-    img{
-        width: 70%;
+        align-items: center;
+        .img-logo{
+            width: 70%;
+            
+        }
+    
     }
     .item {
         display: flex;
@@ -22,6 +23,17 @@
         padding: 5px;
         justify-content: center;
         align-items: center;
+        font-size: 10px;
+        max-width: 100px;
+        box-sizing: border-box;
+        p {
+            white-space: pre;
+        }
+        img{
+            width: 23px !important;
+            height: 23px;
+        }
+        
     }
    .item-menu {
        
@@ -31,7 +43,7 @@
        }
    }
    .item-list {
-        width: 40%;
+        width: 45%;
         display: flex;
         
    }
