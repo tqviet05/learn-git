@@ -118,16 +118,7 @@
 
                             <header class="card-title">Nguyên Chủ tịch quận Liên Chiểu “vấp ngã” vì túi quà như thế nào?</header>
                             <div class="content-box right">
-                                <div class="space"></div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                    <img class = "img-content" src="https://cdn.24h.com.vn/upload/2-2022/images/2022-04-20/thumbnail/fg-1650419891-871-width640height480.jpg" alt="">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p class="highlight-content">5 lý do khiến BĐS The Sailing Bay tại Hon Thom Paradise Island được xem như “cực phẩm...</p>
-                                        <a href="" >Nhịp sống số</a>
-                                    </div>
-                                </div>
+                                
 
                             </div>
                             
@@ -170,17 +161,24 @@
     <script>
         function syncLoadDoc() {
             const xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "https://dog.ceo/api/breed/hound/images", false);
+            xhttp.open("GET", "https://poly-java-6-8f317-default-rtdb.firebaseio.com/listtitle.json", false);
             xhttp.send();
             res= JSON.parse(xhttp.response);
-            console.log(res.message[1]);
-            return res.message
+            console.log(res);
+            return res
         }
-        
+        data=[];
         at= syncLoadDoc();
+        for(i in at){data.push(at[i])};
         // debugger;
         var img_items= document.querySelector(".left");
-        img_items.insertAdjacentHTML('beforeend','<div class="space"></div> <div class="row"> <div class="col-md-3"> <img class = "img-content" src='+at[0]+' "style="width:100%;" > </div> <div class="col-md-9"> <p class="highlight-content">5 lý do khiến BĐS The Sailing Bay tại Hon Thom Paradise Island được xem như “cực phẩm...</p> <a href="" >Nhịp sống số</a> </div> </div>')
+        for (i=0; i<=4; i++){
+        img_items.insertAdjacentHTML('beforeend','<div class="space"></div> <div class="row"> <div class="col-md-3"> <img class = "img-content" src='+data[i].img+' style="width:100%;" > </div> <div class="col-md-9"> <p class="highlight-content">'+data[i].text+'</p> <a href="" >Nhịp sống số</a> </div> </div>')
+        }
+        var img_items= document.querySelector(".right");
+        for (i=4; i<=13; i++){
+        img_items.insertAdjacentHTML('beforeend','<div class="space"></div> <div class="row"> <div class="col-md-3"> <img class = "img-content" src='+data[i].img+' style="width:100%;" > </div> <div class="col-md-9"> <p class="highlight-content">'+data[i].text+'</p> <a href="" >Nhịp sống số</a> </div> </div>')
+        }
         // img_items.src.forEach(element);
         // function element (value,index){
         //     a[index]=value;
