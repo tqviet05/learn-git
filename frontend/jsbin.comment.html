@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+</head>
+<body>
+  <div class = "container mt-5 w-50">
+    <div class="card">
+      <div class="card-body" id="jsOutput">
+        <p class="d-flex">
+          This is comment
+          <span class="ms-auto">Current time</span>
+          <button type="button"  class="btn btn-close btn-danger btn-sm" data-index="index"></button>
+        </p>
+
+      </div>
+
+      <div class="card-footer">
+        <div class ="abc">
+          <textarea class="form-control" id= "jsInput" placeholder="Comment here"></textarea>
+          <div class = "mt-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary " onclick="inputComment()">Post comment</button>
+            <button type="button" class="btn btn-outline-primary ms-1" onclick='clearComment()'>Clear</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    
+  </div>
+
+  <script>
+    data = [];
+    function inputComment(){
+      var collection = getInput().value;
+      if (collection =="") {return}
+      data.push({text: collection, time: Date.now()});
+      getInput().value ="";
+      outPut();
+    };
+    
+    function clearComment(){
+      data = [];
+      app = getOut();
+      app.innerHTML='';
+    };
+    function btnDel(tt) {
+      var index = tt.dataset.indexNumber;
+      delete data[index];
+      outPut();
+    };
+      
+    function getInput() {return document.getElementById("jsInput")};
+    function getOut() {return document.getElementById("jsOutput")};
+    function outPut() {
+      app = getOut();
+      app.innerHTML='';
+      data.forEach(function (value,index){
+        let p = document.createElement('p');
+        let span =  document.createElement('span');
+        let btn1 = document.createElement('button');
+        span.textContent= value.time;
+        p.textContent= value.text;
+        p.classList.add('d-flex');
+        span.classList.add('ms-auto');        
+        btn1.classList.add('btn');        
+        btn1.classList.add('btn-close');
+        btn1.classList.add('btn-danger');
+        btn1.classList.add('btn-sm');
+        btn1.setAttribute('type', 'button');
+        btn1.setAttribute('data-index-number',index);    
+        btn1.setAttribute('onClick','btnDel(this)');
+        p.append(span);
+        p.append(btn1);
+        app.append(p);
+      });
+    }
+  </script>
+</body>
+</html>
