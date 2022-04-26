@@ -1,6 +1,6 @@
 ### 1. Biến
 Gồm 5 loại :
-1. Local variable: Ký tự bất đầu [a-z] hoặc [_] .Truy cập của biến local phụ thuộc vào nơi mà nó được khai báo
+1. Local variable: Ký tự bất đầu [a-z] hoặc [ _ ] .Truy cập của biến local phụ thuộc vào nơi mà nó được khai báo
 2. Global variable: Ký tự bất đầu $ .Truy cập từ bất kỳ đâu trong chương trình
 3. Instance variable: Ký tự bất đầu @ .Nó chỉ thuộc về một đối tượng riêng lẻ hoặc một đối tượng của một lớp.
 4. Class variable: Ký tự bất đầu @@ .Truy cập trong tất cả các thể hiện của lớp đó
@@ -97,7 +97,9 @@ end
 ```ruby
 collection.each {|variable_name|# code}
 ```
-  **map**: Tương tự như vòng lặp each nhưng trả về một mảng mới
+  **map**: Tương tự như vòng lặp each nhưng trả về  một mảng mới. 
+  
+
 
 ```ruby
 collection.map do |variable_name|
@@ -107,6 +109,7 @@ end
 ```ruby
 collection.map {|variable_name|# code}
 ```
+**map!** có chức năng như hàm map hoặc hàm each nhưng giá trị trả về sẻ ghi đè lên mảng gốc.
 
 **select**: lặp qua lần lượt các phần tử trong collection và trả về 1 mảng mới thỏa mãn điều kiện được định nghĩa trong khối code.
 ```ruby
