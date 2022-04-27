@@ -1,4 +1,4 @@
-load_path = Dir["./vendor/bundle/ruby/2.7.0/gems/**/lib"]
+load_path = Dir["./vendor/bundle/ruby/2.5.0/gems/**/lib"]
 $LOAD_PATH.unshift(*load_path)
 require 'pry'
 require 'erb'
@@ -9,7 +9,7 @@ require './config/capybara'
 require './operation/crawl/helper_crawl'
 require './operation/crawl/site_generatedata_crawl'
 require './operation/generate/table_html'
-
+require 'pry'
 # Crawl data
 crawl = Operation::Crawl::SiteGeneratedataCrawl.new
 crawl.start do
