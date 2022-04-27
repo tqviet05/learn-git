@@ -141,3 +141,7 @@ class ten_lop
 end
 ```
 ten_lop: là một biến contant
+
+### 10. Module
+ include: là dùng để import một module. Khi include một module vào một class, Ruby sẽ add module này vào ancestors chain của class đó, ngay sau class đó, và trước superclass của class đó.
+ prepen: cách dùng tương tự như include 
