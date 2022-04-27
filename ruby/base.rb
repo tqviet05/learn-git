@@ -83,8 +83,15 @@ class Bt
       number_false= 0
       loop do 
         puts 'Nhập số bất kỳ từ [0..5]'
-        number= gets.chomp.to_i
-        # validate ngoài dãi
+        number= Integer(gets.chomp) rescue (puts '*****')
+        # validate ngoài dãi va string
+        while number.nil? || number.to_i < 0 || number.to_i > 5
+          puts "******"
+          puts "Nhập sai, yeu cau nhap lai"
+          number= Integer(gets.chomp) rescue (puts '****')
+          # binding.pry
+        end
+        
         if number == rand(0..5)
           number_true += 1
           puts 'Đoán trung'
@@ -107,7 +114,7 @@ class Bt
       
       puts "Tổng kêt: #{number_true + number_false}"
       puts "Số  lần đoán đúng #{number_true}"
-      puts "Số  lần đoán sai #{number_true}"
+      puts "Số  lần đoán sai #{number_false}"
       
 
     end 
