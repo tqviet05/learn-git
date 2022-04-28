@@ -9,7 +9,7 @@ class SetupCapybara
     Capybara.run_server = false
     Capybara.current_driver = :chrome
     Capybara.javascript_driver = :chrome
-    Capybara.default_max_wait_time = 5
+    Capybara.default_max_wait_time = 576
   end
 
   def self.headless_download_setup(driver)
