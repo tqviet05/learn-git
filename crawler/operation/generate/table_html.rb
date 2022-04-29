@@ -1,7 +1,5 @@
 module Operation 
   module Generate
-    attr_accessor :file_input 
-    attr_accessor :saved_at
     class TableHtml 
       def initialize (file_input , saved_at= "./publics/user_datatable.html")
         @file_input = file_input
@@ -16,7 +14,7 @@ module Operation
         renderer = ERB.new(erb_str)
         result = renderer.result(binding)
         # create file html 
-        File.open(@saved_at[:saved_at], 'w') {|f| f.write(result)}
+        File.open(@saved_at, 'w') {|f| f.write(result)}
       end
     end
   end

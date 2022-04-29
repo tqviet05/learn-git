@@ -1,4 +1,4 @@
-require 'capybara/dsl'
+
 module Operation
   module Crawl
     class SiteGeneratedataCrawl
@@ -36,11 +36,8 @@ module Operation
           |f| File.rename("#{SetupCapybara::DOWNLOAD_PATH}/#{f}", "#{SetupCapybara::DOWNLOAD_PATH}/data.json") if f != '.' && f != '..'
         end
         j_file = File.read("#{SetupCapybara::DOWNLOAD_PATH}/data.json")
-        return data_hash = JSON.parse(j_file)
-        # p data_hash[0]
-
+        JSON.parse(j_file)
       end 
-
     end 
   end
 end
