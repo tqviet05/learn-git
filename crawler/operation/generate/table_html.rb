@@ -1,14 +1,23 @@
 module Operation 
   module Generate
-    # attr_accessor : file_input 
-    # attr_accessor : html_saved_at
+    attr_accessor :file_input 
+    attr_accessor :saved_at
     class TableHtml 
-      def initialize (file_input , saved_at: html_saved_at)
-        binding.pry
+      def initialize (file_input , saved_at= "./publics/user_datatable.html")
+        @file_input = file_input
+        @saved_at = saved_at
+        # binding.pry
+      end
+    
+
+      def generate
+        erb_file = './templates/table.html.erb'
+        erb_str = File.read(erb_file)
+        renderer = ERB.new(erb_str)
+        result = renderer.result(binding)
+        # create file html 
+        File.open(@saved_at[:saved_at], 'w') {|f| f.write(result)}
       end
     end
-
-    class Generate
-    end
   end
-end
+end 

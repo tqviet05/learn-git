@@ -15,12 +15,10 @@ require './operation/generate/table_html'
 # Crawl data
 crawl = Operation::Crawl::SiteGeneratedataCrawl.new
 crawl.start do
-  # crawl.file_downloaded
-  binding.pry 
   # Generate TABLE HTML
   html_saved_at = './publics/user_datatable.html'
   generate = Operation::Generate::TableHtml.new(crawl.file_downloaded, saved_at: html_saved_at)
-  # generate.generate
-
+  generate.generate
+  # binding.pry 
   p "Generate HTML: #{html_saved_at}"
 end
