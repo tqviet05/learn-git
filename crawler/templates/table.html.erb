@@ -13,7 +13,15 @@
 <body>
   <div class = "container-fluid mt-5 w-90">
   <h1 class="display-1">CRAWLER BY TANG QUOC VIET</h1>  
-    <table class="table table-striped table-hover">
+  <div class = "container-fluid mt-2 mb-2">
+    <a href="/csv">
+      <button type="button" class="btn btn-outline-secondary">Export CSV</button>
+    </a>
+    <a href="/xls">
+      <button type="button" class="btn btn-outline-secondary">Export XLS</button>
+    </a>
+  </div>
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
           <th class = "table-dark" scope="col">INDEX</th>
@@ -34,8 +42,7 @@
           <td><%= "#{a["text"]}" %></td>
         </tr>
       <% end %>
-   </div> 
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </body>
 </html>
