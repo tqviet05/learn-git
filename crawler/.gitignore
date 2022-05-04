@@ -1,2 +1,3 @@
 /publics/*
-/tmp/
+/tmp/*
+/vendor/*
