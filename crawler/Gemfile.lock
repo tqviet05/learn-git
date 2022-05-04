@@ -59,6 +59,8 @@ GEM
       selenium-webdriver (~> 4.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    zip-zip (0.3)
+      rubyzip (>= 1.0.0)
 
 PLATFORMS
   x86_64-linux
@@ -68,8 +70,10 @@ DEPENDENCIES
   capybara
   erb
   pry
+  rubyzip (>= 1.0.0)
   sinatra
   webdrivers
+  zip-zip
 
 BUNDLED WITH
-   2.3.10
+   2.3.12

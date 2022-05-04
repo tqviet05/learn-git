@@ -5,9 +5,9 @@ module Operation
       include Capybara::DSL
       def start
         # clear initale chromedriver 
-        # Dir.foreach(SetupCapybara::DOWNLOAD_PATH ) {|f| File.delete("#{SetupCapybara::DOWNLOAD_PATH}/#{f}") if f != '.' && f != '..'}
+        Dir.foreach(SetupCapybara::DOWNLOAD_PATH ) {|f| File.delete("#{SetupCapybara::DOWNLOAD_PATH}/#{f}") if f != '.' && f != '..'}
         # download file json
-        # download_data
+        download_data
         yield
         
       end

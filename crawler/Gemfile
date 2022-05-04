@@ -10,4 +10,6 @@ gem 'webdrivers'
 gem 'erb'
 gem 'pry'
 gem 'sinatra'
-gem 'axlsx', '~> 2.0', '>= 2.0.1'
+gem 'axlsx'
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip' # will load compatibility for old rubyzip API.  

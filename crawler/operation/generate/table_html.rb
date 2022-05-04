@@ -22,13 +22,10 @@ module Operation
           headings.merge(hash.keys)
         end
         # Pass 2: Fill data into the headings
-        csv_string = CSV.open('./publics/data.csv', "wb") do |csv|
+        CSV.open('./publics/data.csv', "wb") do |csv|
           csv << headings # append headings
           @file_input.each do |hash|
             row = {}
-            headings.each do |heading|
-              row[heading] = nil
-            end
             hash.each do |k,v|
               row[k] = v.to_s.gsub(/\r\n?/, "").delete("\n").delete("\r")
             end
@@ -49,9 +46,6 @@ module Operation
             # Pass 2: Fill data into the headings
             @file_input.each do |hash|
               row = {}
-              headings.each do |heading|
-                row[heading] = nil
-              end
               hash.each do |k,v|
                 row[k] = v.to_s.gsub(/\r\n?/, "").delete("\n").delete("\r")
               end
