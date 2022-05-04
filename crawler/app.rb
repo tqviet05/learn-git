@@ -10,6 +10,8 @@ require './config/capybara'
 require './operation/crawl/helper_crawl'
 require './operation/crawl/site_generatedata_crawl'
 require './operation/generate/table_html'
+require './operation/generate/export_csv'
+require './operation/generate/export_xlsx'
 require 'sinatra'
 require 'csv'
 require 'axlsx'
@@ -18,11 +20,11 @@ require 'axlsx'
 crawl = Operation::Crawl::SiteGeneratedataCrawl.new
 crawl.start do
   # Generate TABLE HTML
+  data_input = crawl.file_downloaded
   html_saved_at = './publics/user_datatable.html'
-  generate = Operation::Generate::TableHtml.new(crawl.file_downloaded, html_saved_at)
-  generate.generate
-  generate.convert_json_csv
-  generate.convert_json_xls
+  Operation::Generate::TableHtml.new(data_input, html_saved_at).generate
+  Operation::Generate::ExportXlsx.new(data_input).generate
+  Operation::Generate::ExportCsv.new(data_input).generate
   p "Generate HTML: #{html_saved_at}"
 end
 
@@ -31,9 +33,9 @@ get '/' do
 end
 
 get '/csv' do
-  send_file "./publics/data.csv" , :filename => 'data.csv'
+  send_file "./publics/data.csv" , filename: 'data.csv'
 end
 
 get '/xls' do
-  send_file './publics/data.xlsx' , :filename => 'data.xls' 
+  send_file './publics/data.xlsx' , filename: 'data.xls' 
 end
