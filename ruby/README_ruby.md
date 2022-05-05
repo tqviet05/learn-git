@@ -145,3 +145,126 @@ ten_lop: là một biến contant
 ### 10. Module
  include: là dùng để import một module. Khi include một module vào một class, Ruby sẽ add module này vào ancestors chain của class đó, ngay sau class đó, và trước superclass của class đó.
  prepen: cách dùng tương tự như include 
+
+ ### 11. Proc Lambda Block
+ #### 1. Block 
+- Block đơn giản chỉ là tập hợp các lệnh thành một khối (method) được đặt trong dấu ```{...}``` hoặc ```do...end``` và block được đặt nằm sau hàm. Block không phải là đối tượng nên không được lưu trữ vào biến nên không tái sử dụng
+- Sử dụng  `{...}` đối vớ khối lệnh chỉ gồm 1 dòng lệnh
+- Sử dụng  `do...end` đối vớ khối lệnh chỉ gồm nhiều dòng lệnh
+- Đối số trong block được định nghĩa giữa dấu ``| |``
+```ruby
+ array = [1,2,3,4]
+    array.map! do |n|
+      n * n
+    end
+    => [1, 4, 9, 16]
+
+    array = [1,2,3,4]
+    array.map! { |n| n * n }  #cách viết này ngắn gọn hơn cách dùng do...end
+    => [1, 4, 9, 16]
+```
+
+- Truyền block vào hàm thông qua lệnh ``yield``. Giúp ta thực hiện một khối lệnh trong method mà không ảnh hưởng tới đoạn code xung quanh. ``yield`` giúp ta truyền tham số  của method vào block  
+```ruby
+def hello
+  puts "Hello"
+  yield
+  puts "Goodbye"
+end
+ 
+hello { puts "Code truyền vào method" }
+``` 
+```
+Hello
+Code truyền vào method
+Goodbye
+```
+- Nếu chúng ta khai báo yield mà không truyền block vào method thì sẽ gây ra lỗi và đoạn code bên dưới yield sẽ không được thực thi. Vì vậy, để kiểm soát ta cần xem có tồn tại block hay không, nếu không thì bỏ qua để tránh gây lỗi không mong muốn. Sử dụng phương thúc ``block_given?``
+``` ruby
+def hello
+  puts "Hello"
+  return yield if block_given?
+  puts "Goodbye"
+end
+ 
+hello
+```
+Kết quả 
+```
+Hello
+
+Goodbye
+```
+
+#### 2. Proc
+- Proc là đối tượng đại diện cho khối lệnh. Được khởi tạo thông qua ``Proc.new``. Nên Proc có ô nhớ vì vậy có thể sử dụng proc ở bất kỳ khi nào thông qua hàm `call`
+- Đặc tính của Proc: Không kiểm tra số lượng đối số truyền vào. Nếu không truyền tham số thì proc mặc định sẻ gán tham số bằng nil.
+- Hàm Return trong proc thực thi lệnh trong và ngoài khối lệnh proc
+```ruby
+p = Proc.new { |x| puts x +1 }
+p.call(1, 2)
+# return 2
+l = lambda { |x| puts x +1 }
+l.call(1, 2)
+# return Argument Error
+```
+```ruby
+def method_proc
+      proc = Proc.new do
+       return puts "xin chao" 
+       puts "xin chao 2"
+       end
+      proc.call
+      puts "cac ban"
+    end
+    # gọi proc trên
+    method_proc
+    # kết quả in ra là
+    xin chao
+```
+- Truyền proc vào hàm trước đối số  (argument)
+```ruby
+def test_block(&block)
+		  puts block.call
+end
+test_block { "xin chao cac ban" }
+```
+#### 3. Lambda 
+- Lambda là một một đối lượng của Proc. Nên sở hữu cá đặc tính giống Proc, ngoại trừ:
+  - Lambda kiểm tra số lượng đối số truyền vào và trả về Argument Error nếu sai khác về  số  lượng đối số.
+
+```ruby
+# Khởi tạo lambda
+say_something = -> { puts "This is a lambda" }
+ # hoặc
+ say_something = lambda { puts "This is a lambda" }
+say_something.call
+=> "This is a lambda"
+``` 
+```ruby
+# LỖI THAM SỐ
+l = lambda { "I'm a lambda" }
+l.call
+=> "I'm a lambda"
+l.call('arg')
+ArgumentError: wrong number of arguments (1 for 0)
+```
+### Meta Programming
+Metaprogramming hiểu đơn giản là "Code sinh ra code" nghĩa là mình viết một chương trình và chương trình này sẽ sinh ra, điều khiển các chương trình khác hoặc làm 1 phần công việc ở thời điểm biên dịch. Chính vì vậy, metaprogramming giúp source của chúng ta trở nên ngắn gọn hơn, giảm thiểu vấn đề duplicate, như các method có chức năng tương tự nhau trong source code (nhất là trong test), dễ dàng thay đổi cũng như chỉnh sửa, giúp hệ thống trở nên gọn nhẹ và mượt mà hơn.
+Đối tượng meta programming tác động là code. Bao gồm việc kiểm tra và sửa đổi cấu trúc hoạt động của chương trình bằng ngôn ngữ.
+```ruby
+# Vi du tao Instance method va Class method
+class Developer
+  define_method :frontend do |*my_arg|
+    my_arg.inject(1, :*)
+  end
+
+  class << self
+    def create_backend
+      singleton_class.send(:define_method, "backend") do
+        "Born from the ashes!"
+      end
+    end
+  end
+end
+```
